@@ -11,8 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
-xxx-current.json
-xxx-seven days.json
+
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -23,3 +23,5 @@ xxx-seven days.json
 *.njsproj
 *.sln
 *.sw?
+xxx-current.json
+xxx-seven days.json
