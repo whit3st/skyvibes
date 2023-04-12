@@ -6,7 +6,7 @@ import WeatherIcon from "./Weather/WeatherIcon";
 import Temperature from "./Weather/Temperature";
 import WeatherDate from "./Weather/WeatherDate";
 import Details from "./Weather/Details";
-import DayCard from "./Weather/dayCard";
+import DayCard from "./Weather/DayCard";
 import City from "./Weather/City";
 import ErrorText from "./Weather/ErrorText";
 function App() {
