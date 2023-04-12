@@ -51,7 +51,7 @@ function App() {
                 setReady(false);
             });
 
-        e.target.parentNode.children[0].value = "";
+        e.target.parentNode.children[1].value = "";
     }
 
     function getValue(e) {
