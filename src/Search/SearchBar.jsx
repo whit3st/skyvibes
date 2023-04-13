@@ -53,24 +53,25 @@ export default function SearchBar({
 
     return (
         <div className="flex relative min-w-[280px] justify-end">
-            <label className="hidden" htmlFor="user-value">Search a city...</label>
+            <label className="absolute right-20 top-[50%] -translate-y-1/2" htmlFor="user-value">Search a city...</label>
             <input
                 id="user-value"
                 placeholder={placeholder}
                 onKeyUp={getValue}
-                className="bg-transparent transition-all border focus:bg-[rgba(255,255,255,.1)] placeholder-white placeholder-opacity-90 rounded h-[35px] w-[200px] focus:outline-[#ba6af0] px-3"
+                className="bg-transparent z-10 text-black transition-all border focus:bg-[rgba(255,255,255,1)] placeholder-white placeholder-opacity-90 rounded h-[35px] w-[200px] focus:outline-[#ba6af0] px-3"
                 type="text"
             />
             <img
                 className="absolute w-5 top-[50%] -translate-y-1/2 right-2 cursor-pointer"
                 onClick={makeSearch}
                 src="./searchIcon.png"
-                alt=""
+                alt="Search Icon"
             />
             <img
                 src="./weather_icons/800_d.png"
                 className="absolute top-[50%] -translate-y-1/2 left-3 w-6 cursor-pointer"
                 onClick={(e) => changeMode(e)}
+                alt="Light/Dark Mode Icon"
             />
          
             
@@ -78,7 +79,7 @@ export default function SearchBar({
                 id="map"
                 className="absolute top-[50%] -translate-y-1/2 left-12 cursor-pointer"
                 src="./mapIcon.png"
-                alt="Light/Dark Mode Icon"
+                alt="Map Icon"
                 onClick={() => openMap()}
             />
         </div>
