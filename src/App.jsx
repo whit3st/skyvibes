@@ -51,7 +51,7 @@ function App() {
                 setReady(false);
             });
 
-        e.target.parentNode.children[1].value = "";
+        e.target.parentNode.children[0].value = "";
     }
 
     function getValue(e) {
@@ -63,7 +63,7 @@ function App() {
     }
 
     return (
-        <main className="relative px-5 md:px-10 transition-all bg-[rgba(255,255,255,0.1)] shadow-xl rounded sm:mt-10 py-5 text-white md:min-w-[750px] sm:min-w-[600px] max-w-[400px] min-w-[375px] lg:min-w-[800px]">
+        <main className="relative px-5 md:px-10 transition-all bg-[rgba(255,255,255,0.1)] shadow-xl rounded sm:mt-10 py-5 text-white md:min-w-[750px] sm:min-w-[600px] max-w-[320px] lg:min-w-[800px]">
             <header className="flex gap-5 items-center justify-end mb-5">
                 <SearchBar
                     makeSearch={(e) => getData(e)}
@@ -74,7 +74,7 @@ function App() {
             {isError && <ErrorText error="City name not identified." />}
             {ready && (
                 <section className="flex flex-col gap-5 mt-5">
-                    <span className="flex gap-5 justify-between items-center">
+                    <span className="flex justify-between items-center">
                         <WeatherIcon
                             id={currentWeather.weather[0].id}
                             icon={currentWeather.weather[0].icon}
