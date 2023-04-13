@@ -53,6 +53,7 @@ export default function SearchBar({
 
     return (
         <div className="flex relative min-w-[280px] justify-end">
+            <label className="hidden" htmlFor="user-value">Search a city...</label>
             <input
                 id="user-value"
                 placeholder={placeholder}
@@ -77,7 +78,7 @@ export default function SearchBar({
                 id="map"
                 className="absolute top-[50%] -translate-y-1/2 left-12 cursor-pointer"
                 src="./mapIcon.png"
-                alt=""
+                alt="Light/Dark Mode Icon"
                 onClick={() => openMap()}
             />
         </div>
