@@ -53,7 +53,7 @@ export default function SearchBar({
 
     return (
         <div className="flex relative min-w-[280px] justify-end">
-            <label className="absolute right-20 top-[50%] -translate-y-1/2" htmlFor="user-value">Search a city...</label>
+            <label className="absolute right-20 top-[50%] opacity-0 -translate-y-1/2" htmlFor="user-value">Search a city...</label>
             <input
                 id="user-value"
                 placeholder={placeholder}

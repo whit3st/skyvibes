@@ -118,7 +118,7 @@ function App() {
                         onWheel={(e) => {
                             e.target;
                         }}
-                        className="flex h-36 mt-10 gap-4 overflow-x-scroll md:justify-center"
+                        className="flex h-36 mt-10 gap-3 overflow-x-scroll sm:justify-center"
                     >
                         {sevenDays.list.map((day, index) => {
                             return (
