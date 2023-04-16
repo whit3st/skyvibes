@@ -64,7 +64,7 @@ function App() {
     }
 
     return (
-        <main className="relative px-5 md:px-10 transition-all bg-[rgba(255,255,255,0.1)] shadow-xl rounded sm:mt-10 py-5 text-white lg:w-[990px] md:w-[730px] w-[99vw]">
+        <main className="relative px-5 md:px-12 transition-all bg-[rgba(255,255,255,0.1)] shadow-xl rounded sm:mt-10 py-11 text-white lg:w-[990px] md:w-[730px] w-[99vw]">
             <header className="flex gap-5 items-center justify-end mb-5">
                 <SearchBar
                     makeSearch={(e) => getData(e)}
