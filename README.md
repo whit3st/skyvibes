@@ -14,7 +14,7 @@ Skyvibes is a simple and user-friendly forecast website that provides you with t
 
 ## Getting started
 
-To get started with Skyvibes, simply visit the website at [www.skyvibes.vercel.app](https://www.skyvibes.vercel.app) and enter your location in the search bar. Skyvibes will display the current weather conditions and a three-day forecast for your location.
+To get started with Skyvibes, simply visit the website at [www.skyvibes.vercel.app](https://skyvibes.vercel.app/) and enter your location in the search bar. Skyvibes will display the current weather conditions and a three-day forecast for your location.
 
 ## Contributing
 
