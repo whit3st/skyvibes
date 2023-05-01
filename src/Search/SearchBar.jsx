@@ -9,11 +9,14 @@ export default function SearchBar({
     localStorage.getItem("theme") ? '' : localStorage.setItem("theme", "light");
     
     function changeMode() {
+        const themeIcon = document.getElementById("themeIcon");
         localStorage.getItem("theme") === "light" ? localStorage.setItem("theme", "dark") : localStorage.setItem("theme", "light");
         if (localStorage.getItem("theme") === "light") {
             document.querySelector('body').style.background = light.background;
+            themeIcon.src = "./weather_icons/800_n.png";
         } else {
             document.querySelector('body').style.background = dark.background;
+            themeIcon.src = "./weather_icons/800_d.png";
         }
     }
     const light = {
@@ -54,7 +57,7 @@ export default function SearchBar({
             />
             <img
                 id="themeIcon"
-                src="./weather_icons/800_d.png"
+                src={localStorage.getItem("theme") === "light" ? "./weather_icons/800_n.png" : "./weather_icons/800_d.png"}
                 className="absolute top-[50%] -translate-y-1/2 left-3 w-6 cursor-pointer"
                 onClick={(e) => changeMode(e)}
                 alt="Light/Dark Mode Icon"
