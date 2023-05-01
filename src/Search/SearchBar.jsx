@@ -22,7 +22,7 @@ export default function SearchBar({
     const dark = {
         background: "linear-gradient(to bottom right, #421e70, #024f6f, #6f047a)",
     }
-    localStorage.getItem("theme") === "light" ? localStorage.setItem("theme", "dark") : localStorage.setItem("theme", "light");
+    // localStorage.getItem("theme") === "light" ? localStorage.setItem("theme", "dark") : localStorage.setItem("theme", "light");
     if (localStorage.getItem("theme") === "light") {
         document.querySelector('body').style.background = light.background;
     } else {
