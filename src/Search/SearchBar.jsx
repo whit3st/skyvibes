@@ -6,43 +6,27 @@ export default function SearchBar({
     makeSearch,
     coord,
 }) {
-    const [mode, setMode] = useState("dark");
-    function changeMode(e) {
-        const lightMode = {
-            transition: "background .4s ease-in-out",
-            background:
-                "-moz-linear-gradient(90deg, rgba(168,85,246,1) 0%, rgba(243,113,182,1) 100%)",
-            background:
-                "-webkit-linear-gradient(90deg, rgba(168,85,246,1) 0%, rgba(243,113,182,1) 100%)",
-            background:
-                "linear-gradient(90deg, rgba(168,85,246,1) 0%, rgba(243,113,182,1) 100%)",
-            filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr="#a855f6",endColorstr="#f371b6",GradientType=1)',
-        };
-        const darkMode = {
-            transition: "background .4s ease-in-out",
-            background:
-                "-moz-linear-gradient(90deg, rgba(61,21,98,1) 0%, rgba(78,16,49,1) 100%)",
-            background:
-                "-webkit-linear-gradient(90deg, rgba(61,21,98,1) 0%, rgba(78,16,49,1) 100%)",
-            background:
-                "linear-gradient(90deg, rgba(61,21,98,1) 0%, rgba(78,16,49,1) 100%)",
-            filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr="#3d1562",endColorstr="#4e1031",GradientType=1)',
-        };
-        const body = document.querySelector("body");
-
-        if (mode === "light") {
-            setMode("dark");
-            body.style.transition = lightMode.transition;
-            body.style.background = lightMode.background;
-            body.style.filter = lightMode.filter;
-            e.target.src = "./weather_icons/800_d.png";
+    localStorage.getItem("theme") ? '' : localStorage.setItem("theme", "light");
+    
+    function changeMode() {
+        localStorage.getItem("theme") === "light" ? localStorage.setItem("theme", "dark") : localStorage.setItem("theme", "light");
+        if (localStorage.getItem("theme") === "light") {
+            document.querySelector('body').style.background = light.background;
         } else {
-            setMode("light");
-            body.style.transition = darkMode.transition;
-            body.style.background = darkMode.background;
-            body.style.filter = darkMode.filter;
-            e.target.src = "./weather_icons/800_n.png";
+            document.querySelector('body').style.background = dark.background;
         }
+    }
+    const light = {
+        background: "linear-gradient(to bottom right, #a56fe9, #79d4ba, #d348e2)",
+    }
+    const dark = {
+        background: "linear-gradient(to bottom right, #421e70, #024f6f, #6f047a)",
+    }
+    localStorage.getItem("theme") === "light" ? localStorage.setItem("theme", "dark") : localStorage.setItem("theme", "light");
+    if (localStorage.getItem("theme") === "light") {
+        document.querySelector('body').style.background = light.background;
+    } else {
+        document.querySelector('body').style.background = dark.background;
     }
     function openMap() {
         window.open(
@@ -56,9 +40,10 @@ export default function SearchBar({
             <label className="absolute right-20 top-[50%] opacity-0 -translate-y-1/2" htmlFor="user-value">Search a city...</label>
             <input
                 id="user-value"
-                placeholder={placeholder}
+                placeholder="Search a city..."
                 onKeyUp={getValue}
-                className="bg-transparent z-10 text-black transition-all border focus:bg-[rgba(255,255,255,1)] placeholder-white placeholder-opacity-90 rounded h-[35px] w-[200px] focus:outline-[#ba6af0] px-3"
+                aria-label="Search a city..."
+                className="bg-transparent z-10  transition-all border  placeholder-white placeholder-opacity-90 rounded h-[35px] w-[200px] focus:outline-[#ba6af0] px-3"
                 type="text"
             />
             <img
@@ -68,6 +53,7 @@ export default function SearchBar({
                 alt="Search Icon"
             />
             <img
+                id="themeIcon"
                 src="./weather_icons/800_d.png"
                 className="absolute top-[50%] -translate-y-1/2 left-3 w-6 cursor-pointer"
                 onClick={(e) => changeMode(e)}

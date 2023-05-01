@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "./Search/SearchBar";
 import FahrOrCels from "./Weather/FahrOrCels";
-import FahrToCels from "./Search/FahrToCels";
 import WeatherIcon from "./Weather/WeatherIcon";
 import Temperature from "./Weather/Temperature";
 import WeatherDate from "./Weather/WeatherDate";
@@ -10,10 +9,6 @@ import DayCard from "./Weather/DayCard";
 import City from "./Weather/City";
 import ErrorText from "./Weather/ErrorText";
 function App() {
-    // API call yaparken hem C hem F al,
-    // bir tane state true false yap
-    // eğer true ise Celsius datası gözüksün
-    // false ise Fahreinheit datası gözüksün?
     const [value, setValue] = useState();
     const [sevenDays, setSevenDays] = useState();
     const [currentWeather, setCurrentWeather] = useState();
@@ -52,7 +47,7 @@ function App() {
             });
 
         e.target.parentNode.children[1].value = "";
-        e.target.blur()
+        e.target.blur();
     }
 
     function getValue(e) {
@@ -63,8 +58,61 @@ function App() {
         }
     }
 
+    useEffect(() => {
+        const cities = [
+            "New York",
+            "London",
+            "Tokyo",
+            "Paris",
+            "Sydney",
+            "Los Angeles",
+            "Toronto",
+            "Berlin",
+            "Mumbai",
+            "Rio de Janeiro",
+            "Moscow",
+            "Amsterdam",
+            "Hong Kong",
+            "Singapore",
+            "Dubai",
+            "Rome",
+            "Barcelona",
+            "San Francisco",
+            "Cape Town",
+            "Bangkok",
+        ];
+        const randomCity = cities[Math.floor(Math.random() * cities.length)];
+        const defaultSevenDaysURL = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${randomCity}&cnt=7&appid=${API_KEY}&units=metric`;
+        const defaultCurrentURL = `https://api.openweathermap.org/data/2.5/weather?q=${randomCity}&appid=${API_KEY}&units=metric`;
+        Promise.all([fetch(defaultSevenDaysURL), fetch(defaultCurrentURL)])
+            .then(([sevenDaysRes, currentRes]) =>
+                Promise.all([
+                    sevenDaysRes.json(),
+                    currentRes.json(),
+                    sevenDaysRes.ok,
+                    currentRes.ok,
+                ])
+            )
+            .then(([sevenDaysData, currentData, sevenDaysOk, currentOk]) => {
+                if (sevenDaysOk && currentOk) {
+                    setSevenDays(sevenDaysData);
+                    setCurrentWeather(currentData);
+                    setReady(true);
+                } else {
+                    setIsError(true);
+                    setReady(false);
+                    setTimeout(() => {
+                        setIsError(false);
+                    }, 2000);
+                }
+            })
+            .catch(() => {
+                setIsError(true);
+                setReady(false);
+            });
+    }, []);
     return (
-        <main className="relative px-5 md:px-12 transition-all bg-[rgba(255,255,255,0.1)] shadow-xl rounded sm:mt-10 py-11 text-white lg:w-[990px] md:w-[730px] w-[99vw]">
+        <main className="relative px-5 md:px-12 transition-all bg-[rgba(255,255,255,0.15)] shadow-xl rounded sm:mt-10 py-11 text-white lg:w-[990px] md:w-[730px] w-[99vw]">
             <header className="flex gap-5 items-center justify-end mb-5">
                 <SearchBar
                     makeSearch={(e) => getData(e)}
@@ -73,7 +121,7 @@ function App() {
                 />
             </header>
             {isError && <ErrorText error="City name not identified." />}
-            {ready && (
+            {<h1>Loading...</h1> && ready && (
                 <section className="flex flex-col gap-5 mt-5">
                     <span className="flex justify-between items-center">
                         <WeatherIcon
