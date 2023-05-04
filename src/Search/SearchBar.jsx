@@ -25,7 +25,7 @@ export default function SearchBar({
     const dark = {
         background: "linear-gradient(to bottom right, #421e70, #024f6f, #6f047a)",
     }
-    // localStorage.getItem("theme") === "light" ? localStorage.setItem("theme", "dark") : localStorage.setItem("theme", "light");
+
     if (localStorage.getItem("theme") === "light") {
         document.querySelector('body').style.background = light.background;
     } else {
@@ -46,7 +46,7 @@ export default function SearchBar({
                 placeholder="Search a city..."
                 onKeyUp={getValue}
                 aria-label="Search a city..."
-                className="bg-transparent z-10  transition-all border  placeholder-white placeholder-opacity-90 rounded h-[35px] w-[200px] focus:outline-[#ba6af0] px-3"
+                className="bg-transparent z-10  transition-all border  placeholder-white placeholder-opacity-90 rounded h-[35px] w-[200px] focus:outline-[#6e047a62] px-3"
                 type="text"
             />
             <img

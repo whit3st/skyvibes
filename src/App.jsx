@@ -8,6 +8,8 @@ import Details from "./Weather/Details";
 import DayCard from "./Weather/DayCard";
 import City from "./Weather/City";
 import ErrorText from "./Weather/ErrorText";
+import Wrapper_IconAndCity from "./Weather/Wrapper_IconAndCity";
+import SevenDays from "./Weather/SevenDays";
 function App() {
     const [value, setValue] = useState();
     const [sevenDays, setSevenDays] = useState();
@@ -18,6 +20,7 @@ function App() {
     const SEVEN_DAYS_URL = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${value}&cnt=7&appid=${API_KEY}&units=metric`;
     const CURRENT_URL = `https://api.openweathermap.org/data/2.5/weather?q=${value}&appid=${API_KEY}&units=metric`;
 
+    // FETCHING DATA FROM API
     function getData(e) {
         Promise.all([fetch(SEVEN_DAYS_URL), fetch(CURRENT_URL)])
             .then(([sevenDaysRes, currentRes]) =>
@@ -58,6 +61,7 @@ function App() {
         }
     }
 
+    // SHOWING USER AFTER PAGE LOAD
     useEffect(() => {
         const cities = [
             "New York",
@@ -121,74 +125,18 @@ function App() {
                 />
             </header>
             {isError && <ErrorText error="City name not identified." />}
-            {<h1>Loading...</h1> && ready && (
+            {ready && (
                 <section className="flex flex-col gap-5 mt-5">
-                    <span className="flex justify-between items-center">
-                        <WeatherIcon
-                            id={currentWeather.weather[0].id}
-                            icon={currentWeather.weather[0].icon}
-                        />
-                        <City
-                            city={
-                                currentWeather.name
-                                    .split(" ")
-                                    .includes("Province")
-                                    ? currentWeather.name.split(" ").shift()
-                                    : currentWeather.name
-                            }
-                            country={currentWeather.sys.country}
-                        />
-                    </span>
-
-                    <span className="flex gap-4">
-                        <Temperature
+                    <Wrapper_IconAndCity currentWeather={currentWeather} />
+                    <Temperature
+                            currentWeather={currentWeather}
                             temp={Math.floor(currentWeather.main.temp)}
                             feelsLike={Math.floor(
                                 currentWeather.main.feels_like
                             )}
                             description={currentWeather.weather[0].description}
-                        />
-                        <FahrOrCels celciusOrFahrenheit="celcius" />
-                    </span>
-                    <WeatherDate
-                        date={new Date(
-                            (currentWeather.dt + currentWeather.timezone) * 1000
-                        )
-                            .toUTCString()
-                            .slice(0, -18)}
                     />
-                    <Details
-                        wind={Math.floor(currentWeather.wind.speed * 3.6)}
-                        humidity={currentWeather.main.humidity}
-                        pressure={currentWeather.main.pressure}
-                    />
-                    <span
-                        onWheel={(e) => {
-                            e.target;
-                        }}
-                        className="flex h-36 mt-10 gap-3 overflow-x-scroll sm:justify-center"
-                    >
-                        {sevenDays.list.map((day, index) => {
-                            return (
-                                <DayCard
-                                    id={day.weather[0].id}
-                                    icon={day.weather[0].icon}
-                                    temp={
-                                        Math.floor(
-                                            (day.temp.max + day.temp.min) / 2
-                                        ) + "°C"
-                                    }
-                                    day={new Date(
-                                        (day.dt + sevenDays.city.timezone) *
-                                            1000
-                                    )
-                                        .toUTCString()
-                                        .slice(0, 3)}
-                                    key={index}
-                                />
-                            );
-                        })}
-                    </span>
+                    <SevenDays sevenDays={sevenDays} />
                 </section>
             )}
         </main>
