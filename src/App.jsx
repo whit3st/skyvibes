@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import SearchBar from "./Search/SearchBar";
-import FahrOrCels from "./Weather/FahrOrCels";
-import WeatherIcon from "./Weather/WeatherIcon";
 import Temperature from "./Weather/Temperature";
-import WeatherDate from "./Weather/WeatherDate";
-import Details from "./Weather/Details";
-import DayCard from "./Weather/DayCard";
-import City from "./Weather/City";
 import ErrorText from "./Weather/ErrorText";
 import Wrapper_IconAndCity from "./Weather/Wrapper_IconAndCity";
 import SevenDays from "./Weather/SevenDays";
