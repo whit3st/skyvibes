@@ -1,7 +1,8 @@
 # Skyvibes
 
 Skyvibes is a simple and user-friendly forecast website that provides you with the latest weather conditions and a three-day forecast for any location. With Skyvibes, you can easily plan your day, stay informed about the weather, and be prepared for any changes in weather conditions.
-
+## Screenshot
+![skyvibes screenshot]([http://url/to/img.png](https://www.linkpicture.com/q/skyvibes.vercel.app_-1.png)
 
 ## Features
 
