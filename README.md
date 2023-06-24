@@ -4,7 +4,7 @@ Skyvibes is a simple and user-friendly forecast website that provides you with t
 
 ## Screenshot
 
-![Screenshot](screenshot2.png)
+![Screenshot2](screenshot2.png)
 ![Screenshot](screenshot.png)
 
 ## Features
