@@ -66,7 +66,7 @@ export default function SearchBar({
             
             <img
                 id="map"
-                className="absolute top-[50%] -translate-y-1/2 left-10 cursor-pointer w-10"
+                className="absolute top-[50%] -translate-y-1/2 left-10 cursor-pointer w-8"
                 src="./mapIcon.svg"
                 alt="Map Icon"
                 onClick={() => openMap()}
